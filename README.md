@@ -5,7 +5,7 @@ A web application that empowers Fitness.
 
 ## Authors
 - [Nurul Amin](https://www.github.com/NurulAmin7990)
-- [Kelvin James](https://www.github.com/kelvin789)
+- [Kelvin](https://www.github.com/kelvin789)
   
 ## Tech Stack
 **Server & Client:** ![image](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
