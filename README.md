@@ -21,4 +21,4 @@ A web application that empowers Fitness.
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 ## Demo
-Insert gif or link to demo
+https://gym-dotnet.herokuapp.com/
