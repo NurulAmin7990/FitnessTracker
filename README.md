@@ -21,4 +21,4 @@ A web application that empowers Fitness.
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 ## Demo
-https://gym-dotnet.herokuapp.com/
+http://www.GymTracker.somee.com
