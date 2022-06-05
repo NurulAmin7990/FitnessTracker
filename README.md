@@ -1,4 +1,4 @@
-#![Logo](https://cdn-icons-png.flaticon.com/512/69/69840.png)
+# ![Logo](https://cdn-icons-png.flaticon.com/512/69/69840.png)
 
 ## Gym
 A web application that empowers Fitness.
