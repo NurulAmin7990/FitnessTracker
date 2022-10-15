@@ -1,7 +1,12 @@
+using FitnessTracker.BusinessLogic.Data;
+using FitnessTracker.BusinessLogic.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
