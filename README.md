@@ -6,9 +6,13 @@ A web application that empowers Fitness.
 ### Authors
 - [Nurul Amin](https://www.github.com/NurulAmin7990)
 - [Kelvin](https://www.github.com/kelvin789)
+- [Rammah](https://www.github.com/rammahkarpous)
+- [Balal](https://www.github.com/Balalmughal)
   
 ### Tech Stack
-**Server & Client:** ![image](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
+**Client:** ![image](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+
+**Server:** ![image](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 
 **Database:** ![image](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
 
