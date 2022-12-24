@@ -1,8 +1,9 @@
 ﻿.DS_Store
 .vscode
 /.vs
-/FitnessTracker.Database
 /FitnessTracker/.vs/FitnessTracker/*
 *.suo
+*.jfm
+*.dbmdl
 bin
 obj
