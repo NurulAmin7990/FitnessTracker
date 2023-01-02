@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTracker.WebAPI", "..
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTracker.BusinessLogic", "..\FitnessTracker.BusinessLogic\FitnessTracker.BusinessLogic.csproj", "{93E32447-F53B-406C-B1C1-07D861D95141}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTracker.Shared", "..\FitnessTracker.Shared\FitnessTracker.Shared.csproj", "{F04E0A18-D88D-4B4E-AF1A-64057975B8BB}"
-EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FitnessTracker.Database", "..\FitnessTracker.Database\FitnessTracker.Database.sqlproj", "{3DF6D453-037C-42ED-806B-FA45CAA5692B}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{93E32447-F53B-406C-B1C1-07D861D95141}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93E32447-F53B-406C-B1C1-07D861D95141}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93E32447-F53B-406C-B1C1-07D861D95141}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F04E0A18-D88D-4B4E-AF1A-64057975B8BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F04E0A18-D88D-4B4E-AF1A-64057975B8BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F04E0A18-D88D-4B4E-AF1A-64057975B8BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F04E0A18-D88D-4B4E-AF1A-64057975B8BB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3DF6D453-037C-42ED-806B-FA45CAA5692B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3DF6D453-037C-42ED-806B-FA45CAA5692B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DF6D453-037C-42ED-806B-FA45CAA5692B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
