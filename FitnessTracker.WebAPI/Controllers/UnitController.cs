@@ -1,5 +1,6 @@
 ﻿using FitnessTracker.BusinessLogic.Interfaces;
 using FitnessTracker.BusinessLogic.Models;
+using FitnessTracker.WebAPI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -36,10 +37,10 @@ namespace FitnessTracker.WebAPI.Controllers
         ///     }]
         ///
         /// </remarks>
-        /// <response code="201">Returns all the existing units</response>
+        /// <response code="200">Returns all the existing units</response>
         /// <response code="204">No existing units</response>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [Route("Get")]
         public async Task<IActionResult> GetUnits()
@@ -48,10 +49,22 @@ namespace FitnessTracker.WebAPI.Controllers
 
             if (units.Any())
             {
-                return Ok(units);
+                IEnumerable<ViewUnitVM> UnitsVMs = new List<ViewUnitVM>();
+
+                foreach (Unit unit in units)
+                {
+                    UnitsVMs.Append(new ViewUnitVM
+                    {
+                        Id = unit.Id,
+                        UnitType = unit.UnitType,
+                        Description = unit.Description
+                    });
+                }
+
+                return Ok(UnitsVMs);
             }
 
-            return BadRequest(units);
+            return NoContent();
         }
 
         /// <summary>
@@ -79,10 +92,10 @@ namespace FitnessTracker.WebAPI.Controllers
 
             if (unit != null)
             {
-                return Ok(unit);
+                return Ok(new ViewUnitVM() { Id = unit.Id, UnitType = unit.UnitType, Description = unit.Description});
             }
 
-            return BadRequest(unit);
+            return NotFound(string.Format("Unit with unique identifier {0} does not exist.", id));
         }
 
         /// <summary>
@@ -103,12 +116,23 @@ namespace FitnessTracker.WebAPI.Controllers
         /// <response code="500">Failed to create new unit record</response>
         [HttpPost]
         [Route("Create")]
-        public async Task<IActionResult> AddUnit(Unit unit)
+        public async Task<IActionResult> AddUnit(CreateUnitVM unit)
         {
-            await _uow.UnitRepository.AddUnitAsync(unit);
-            await _uow.SaveAsync();
+            if (ModelState.IsValid)
+            {
+                await _uow.UnitRepository.AddUnitAsync(new Unit()
+                {
+                    UnitType = unit.UnitType,
+                    Description = unit.Description,
+                });
+                await _uow.SaveAsync();
 
-            return StatusCode((int)HttpStatusCode.Created);
+                return StatusCode((int)HttpStatusCode.Created);
+            }
+            else
+            {
+                return StatusCode((int)HttpStatusCode.BadRequest, ModelState);
+            }
         }
 
         /// <summary>
