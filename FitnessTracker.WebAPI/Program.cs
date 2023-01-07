@@ -1,6 +1,7 @@
 using FitnessTracker.BusinessLogic.Data;
 using FitnessTracker.BusinessLogic.Interfaces;
 using FitnessTracker.BusinessLogic.Models;
+using FitnessTracker.WebAPI.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -25,6 +26,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
     options.EnableAnnotations();
+    options.SchemaFilter<SwaggerSchemaExampleFilter>();
 });
 builder.Services.AddDbContext<FitnessTrackerContext>(options =>
 {
