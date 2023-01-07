@@ -1,8 +1,10 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
+﻿.DS_Store
+.vscode
 /.vs
-/FitnessTracker.Database
-/FitnessTracker/.vs/FitnessTracker/FileContentIndex
-/FitnessTracker/.vs/FitnessTracker/v17
+/FitnessTracker/.vs/FitnessTracker/*
+*.suo
+*.jfm
+*.dbmdl
+bin
+obj
+*.2
