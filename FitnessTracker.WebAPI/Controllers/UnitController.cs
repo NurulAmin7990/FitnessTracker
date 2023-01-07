@@ -92,7 +92,7 @@ namespace FitnessTracker.WebAPI.Controllers
 
             if (unit != null)
             {
-                return Ok(new ViewUnitVM() { Id = unit.Id, UnitType = unit.UnitType, Description = unit.Description});
+                return Ok(new ViewUnitVM() {Id = unit.Id, UnitType = unit.UnitType, Description = unit.Description});
             }
 
             return NotFound(string.Format("Unit with unique identifier {0} does not exist.", id));
