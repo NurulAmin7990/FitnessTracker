@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FitnessTracker.WebAPI.Attributes;
+using Swashbuckle.AspNetCore.Annotations;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace FitnessTracker.WebAPI.ViewModels
@@ -11,6 +13,8 @@ namespace FitnessTracker.WebAPI.ViewModels
         [DataType(DataType.Text)]
         [RegularExpression("^(?!\\d+$)[a-zA-Z0-9]{1,2}$")]
         [JsonPropertyName("unitType")]
+        [SwaggerSchema("Imperial unit abbreviation")]
+        [SwaggerSchemaExample("KG")]
         public string UnitType { get; set; }
 
         [Required]
@@ -18,6 +22,8 @@ namespace FitnessTracker.WebAPI.ViewModels
         [MaxLength(255)]
         [DataType(DataType.Text)]
         [JsonPropertyName("description")]
+        [SwaggerSchema("Imperial unit")]
+        [SwaggerSchemaExample("Kilograms")]
         public string Description { get; set; }
     }
 }

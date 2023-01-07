@@ -2,12 +2,14 @@
 using FitnessTracker.BusinessLogic.Models;
 using FitnessTracker.WebAPI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace FitnessTracker.WebAPI.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
+    [SwaggerTag("Create, read, update and delete Units")]
     public class UnitController : Controller
     {
         private readonly IUnitOfWork _uow;
@@ -17,32 +19,16 @@ namespace FitnessTracker.WebAPI.Controllers
             this._uow = uow;
         }
 
-        /// <summary>
-        /// Get all units
-        /// </summary>
-        /// <returns>Existing units</returns>
-        /// <remarks>
-        /// Sample request:
-        ///
-        ///     GET /Unit/Get
-        ///     [{
-        ///        "id": 1,
-        ///        "unitType": "KG",
-        ///        "description": "Kilograms"
-        ///     },
-        ///     {
-        ///        "id": 2,
-        ///        "unitType": "G",
-        ///        "description": "Grams"
-        ///     }]
-        ///
-        /// </remarks>
-        /// <response code="200">Returns all the existing units</response>
-        /// <response code="204">No existing units</response>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [Route("Get")]
+        [SwaggerOperation(
+            Summary = "Get all units",
+            Description = null,
+            OperationId = "GetUnits",
+            Tags = new[] { "Unit" }
+        )]
+        [SwaggerResponse(StatusCodes.Status200OK, "Returns all the existing units", type: typeof(List<ViewUnitVM>))]
+        [SwaggerResponse(StatusCodes.Status204NoContent, "No existing units")]
         public async Task<IActionResult> GetUnits()
         {
             IEnumerable<Unit> units = await _uow.UnitRepository.GetUnitsAsync();
@@ -67,94 +53,91 @@ namespace FitnessTracker.WebAPI.Controllers
             return NoContent();
         }
 
-        /// <summary>
-        /// Get single unit by it's unique identifier
-        /// </summary>
-        /// <returns>Existing unit</returns>
-        /// <remarks>
-        /// Sample request:
-        ///
-        ///     GET /Unit/Get/1
-        ///     {
-        ///        "id": 1,
-        ///        "unitType": "KG",
-        ///        "description": "Kilograms"
-        ///     }
-        ///
-        /// </remarks>
-        /// <response code="201">Returns the existing unique unit</response>
-        /// <response code="204">No existing unit found by the given identifier</response>
         [HttpGet]
         [Route("Get/{id}")]
-        public async Task<IActionResult> GetUnitById(int id)
+        [SwaggerOperation(
+            Summary = "Get single unit by it's unique identifier",
+            Description = null,
+            OperationId = "GetUnitById",
+            Tags = new[] { "Unit" }
+        )]
+        [SwaggerResponse(StatusCodes.Status302Found, "Returns the existing unique unit", type: typeof(ViewUnitVM))]
+        [SwaggerResponse(StatusCodes.Status404NotFound, "No existing unit found by the given identifier")]
+        public async Task<IActionResult> GetUnitById([SwaggerParameter("Unit Id", Required = true)] int id)
         {
             Unit unit = await _uow.UnitRepository.GetUnitByIdAsync(id);
 
             if (unit != null)
             {
-                return Ok(new ViewUnitVM() {Id = unit.Id, UnitType = unit.UnitType, Description = unit.Description});
+                return StatusCode(StatusCodes.Status302Found, new ViewUnitVM()
+                {
+                    Id = unit.Id,
+                    UnitType = unit.UnitType,
+                    Description = unit.Description
+                });
             }
 
             return NotFound(string.Format("Unit with unique identifier {0} does not exist.", id));
         }
 
-        /// <summary>
-        /// Create new unit to store in database
-        /// </summary>
-        /// <returns>Newly created unit</returns>
-        /// <remarks>
-        /// Sample request:
-        ///
-        ///     POST /Unit/Create
-        ///     {
-        ///        "unitType": "KG",
-        ///        "description": "Kilograms"
-        ///     }
-        ///
-        /// </remarks>
-        /// <response code="201">Returns the new unique unit record</response>
-        /// <response code="500">Failed to create new unit record</response>
         [HttpPost]
         [Route("Create")]
+        [SwaggerOperation(
+            Summary = "Create a new unit",
+            Description = null,
+            OperationId = "AddUnit",
+            Tags = new[] { "Unit" }
+        )]
+        [SwaggerResponse(StatusCodes.Status201Created, "Returns the new unique unit record", type: typeof(ViewUnitVM))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, "Returns the model state dictionary", type: typeof(ModelStateDictionary))]
+        [SwaggerResponse(StatusCodes.Status500InternalServerError, "Failed to create new unit record")]
         public async Task<IActionResult> AddUnit(CreateUnitVM unit)
         {
             if (ModelState.IsValid)
             {
-                await _uow.UnitRepository.AddUnitAsync(new Unit()
+                var Unit = await _uow.UnitRepository.AddUnitAsync(new Unit()
                 {
                     UnitType = unit.UnitType,
                     Description = unit.Description,
                 });
+
                 await _uow.SaveAsync();
 
-                return StatusCode((int)HttpStatusCode.Created);
+                return StatusCode(StatusCodes.Status201Created, new ViewUnitVM()
+                {
+                    Id = Unit.Id,
+                    UnitType = Unit.UnitType,
+                    Description = Unit.Description
+                });
             }
             else
             {
-                return StatusCode((int)HttpStatusCode.BadRequest, ModelState);
+                return StatusCode(StatusCodes.Status400BadRequest, ModelState);
             }
         }
 
-        /// <summary>
-        /// Removed existing unit record from database
-        /// </summary>
-        /// <returns>Nothing</returns>
-        /// <remarks>
-        /// Sample request:
-        ///
-        ///     POST /Unit/Delete/1
-        ///
-        /// </remarks>
-        /// <response code="200">Removed the existing unit record from the database</response>
-        /// <response code="500">Failed to remove the existing unit record from the database</response>
         [HttpDelete]
         [Route("Delete/{id}")]
-        public async Task<IActionResult> DeleteUnit(int id)
+        [SwaggerOperation(
+            Summary = "Removed existing unit record",
+            Description = null,
+            OperationId = "DeleteUnit",
+            Tags = new[] { "Unit" }
+        )]
+        [SwaggerResponse(StatusCodes.Status200OK, "Removed the existing unit record from the database", type: typeof(int))]
+        [SwaggerResponse(StatusCodes.Status404NotFound, "Could not find the unit with the given unique identifier")]
+        [SwaggerResponse(StatusCodes.Status500InternalServerError, "Failed to remove the existing unit record from the database")]
+        public async Task<IActionResult> DeleteUnit([SwaggerParameter("Unit Id", Required = true)] int id)
         {
-            await _uow.UnitRepository.DeleteUnitAsync(id);
-            await _uow.SaveAsync();
+            if (await _uow.UnitRepository.GetUnitByIdAsync(id) != null)
+            {
+                await _uow.UnitRepository.DeleteUnitAsync(id);
+                await _uow.SaveAsync();
 
-            return Ok(id);
+                return Ok(id);
+            }
+
+            return NotFound(string.Format("Unit with unique identifier {0} does not exist.", id));
         }
     }
 }
