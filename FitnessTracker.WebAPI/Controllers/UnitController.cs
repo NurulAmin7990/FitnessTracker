@@ -49,11 +49,11 @@ namespace FitnessTracker.WebAPI.Controllers
 
             if (units.Any())
             {
-                IEnumerable<ViewUnitVM> UnitsVMs = new List<ViewUnitVM>();
+                List<ViewUnitVM> UnitsVMs = new List<ViewUnitVM>();
 
                 foreach (Unit unit in units)
                 {
-                    UnitsVMs.Append(new ViewUnitVM
+                    UnitsVMs.Add(new ViewUnitVM
                     {
                         Id = unit.Id,
                         UnitType = unit.UnitType,
