@@ -17,8 +17,14 @@ builder.Services.AddSwaggerGen(options =>
         Version = "v1",
         Title = "Fitness Tracker API",
         Description = "An ASP.NET Core Web API for fitness tracking and workout management",
-        TermsOfService = new Uri("https://fitnesstracker.com/terms")
+        TermsOfService = new Uri("https://fitnesstracker.com/terms"),
+        Contact = new OpenApiContact
+        {
+            Name = "Nurul Amin",
+            Email = "NurulAmin7990@gmail.com"
+        }
     });
+    options.EnableAnnotations();
 });
 builder.Services.AddDbContext<FitnessTrackerContext>(options =>
 {
@@ -32,7 +38,14 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    options.SwaggerEndpoint("/swagger/v1/swagger.json",
+    "Fitness Tracker API v1"));
+    app.UseReDoc(options =>
+    {
+        options.DocumentTitle = "Fitness Tracker Documentation";
+        options.SpecUrl = "/swagger/v1/swagger.json";
+    });
 }
 app.UseAuthorization();
 app.MapControllers();
