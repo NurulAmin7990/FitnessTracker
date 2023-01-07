@@ -8,7 +8,7 @@ namespace FitnessTracker.BusinessLogic.Interfaces
 
         Task<Unit> GetUnitByIdAsync(int id);
 
-        Task AddUnitAsync(Unit unit);
+        Task<Unit> AddUnitAsync(Unit unit);
 
         Task DeleteUnitAsync(int unitId);
     }

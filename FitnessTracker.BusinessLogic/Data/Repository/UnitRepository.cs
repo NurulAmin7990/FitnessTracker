@@ -30,9 +30,11 @@ namespace FitnessTracker.BusinessLogic.Repository
             return new Unit();
         }
 
-        public async Task AddUnitAsync(Unit unit)
+        public async Task<Unit> AddUnitAsync(Unit unit)
         {
             await _fitnessTrackerContext.Units.AddAsync(unit);
+
+            return unit;
         }
 
         public async Task DeleteUnitAsync(int id)
