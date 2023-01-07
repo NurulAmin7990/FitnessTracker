@@ -30,6 +30,7 @@ builder.Services.AddDbContext<FitnessTrackerContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
+builder.Services.AddCors(options => options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 // Add local services to the container
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -49,6 +50,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseAuthorization();
 app.MapControllers();
+app.UseCors("Open");
 app.Run();
 app.UseSwagger(options =>
 {
