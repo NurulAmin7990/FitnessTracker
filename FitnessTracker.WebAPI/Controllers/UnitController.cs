@@ -9,7 +9,7 @@ namespace FitnessTracker.WebAPI.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    [SwaggerTag("Create, read, update and delete Units")]
+    [SwaggerTag("Create, update and delete Units")]
     public class UnitController : Controller
     {
         private readonly IUnitOfWork _uow;
@@ -17,67 +17,6 @@ namespace FitnessTracker.WebAPI.Controllers
         public UnitController(IUnitOfWork uow)
         {
             this._uow = uow;
-        }
-
-        [HttpGet]
-        [Route("Get")]
-        [SwaggerOperation(
-            Summary = "Get all units",
-            Description = null,
-            OperationId = "GetUnits",
-            Tags = new[] { "Unit" }
-        )]
-        [SwaggerResponse(StatusCodes.Status200OK, "Returns all the existing units", type: typeof(List<ViewUnitVM>))]
-        [SwaggerResponse(StatusCodes.Status204NoContent, "No existing units")]
-        public async Task<IActionResult> GetUnits()
-        {
-            IEnumerable<Unit> units = await _uow.UnitRepository.GetUnitsAsync();
-
-            if (units.Any())
-            {
-                List<ViewUnitVM> UnitsVMs = new List<ViewUnitVM>();
-
-                foreach (Unit unit in units)
-                {
-                    UnitsVMs.Add(new ViewUnitVM
-                    {
-                        Id = unit.Id,
-                        UnitType = unit.UnitType,
-                        Description = unit.Description
-                    });
-                }
-
-                return Ok(UnitsVMs);
-            }
-
-            return NoContent();
-        }
-
-        [HttpGet]
-        [Route("Get/{id}")]
-        [SwaggerOperation(
-            Summary = "Get single unit by it's unique identifier",
-            Description = null,
-            OperationId = "GetUnitById",
-            Tags = new[] { "Unit" }
-        )]
-        [SwaggerResponse(StatusCodes.Status302Found, "Returns the existing unique unit", type: typeof(ViewUnitVM))]
-        [SwaggerResponse(StatusCodes.Status404NotFound, "No existing unit found by the given identifier")]
-        public async Task<IActionResult> GetUnitById([SwaggerParameter("Unit Id", Required = true)] int id)
-        {
-            Unit unit = await _uow.UnitRepository.GetUnitByIdAsync(id);
-
-            if (unit != null)
-            {
-                return StatusCode(StatusCodes.Status302Found, new ViewUnitVM()
-                {
-                    Id = unit.Id,
-                    UnitType = unit.UnitType,
-                    Description = unit.Description
-                });
-            }
-
-            return NotFound(string.Format("Unit with unique identifier {0} does not exist.", id));
         }
 
         [HttpPost]
