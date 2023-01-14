@@ -8,3 +8,8 @@
 bin
 obj
 *.2
+/FitnessTracker.WebAPI/.config/dotnet-tools.json
+/FitnessTracker.WebAPI/Properties/PublishProfiles/FolderProfile.pubxml
+/FitnessTracker.WebAPI/Properties/PublishProfiles/FolderProfile.pubxml.user
+/FitnessTracker.WebAPI/appsettings.json
+/FitnessTracker.WebAPI/FitnessTracker.WebAPI.csproj.user
