@@ -4,7 +4,7 @@
 A web application that empowers Fitness.
 
 ### Authors
-- [Nurul Amin](https://www.github.com/NurulAmin7990)
+- [Nurul](https://www.github.com/NurulAmin7990)
 - [Kelvin](https://www.github.com/kelvin789)
 - [Rammah](https://www.github.com/rammahkarpous)
 - [Balal](https://www.github.com/Balalmughal)
@@ -25,4 +25,4 @@ A web application that empowers Fitness.
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 ### Demo
-<http://www.GymTracker.somee.com/>
+<http://www.fitnesstracker.somee.com/>
