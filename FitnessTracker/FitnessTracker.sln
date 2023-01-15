@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTacker.MVC", "..\FitnessTacker.MVC\FitnessTacker.MVC.csproj", "{CD5129B8-C9EB-4D2F-A1B1-67AD03764841}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTracker.WebAPI", "..\FitnessTracker.WebAPI\FitnessTracker.WebAPI.csproj", "{239226A1-4449-4833-8B42-1549F8F64610}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTracker.WebAPI", "..\FitnessTracker.WebAPI\FitnessTracker.WebAPI.csproj", "{239226A1-4449-4833-8B42-1549F8F64610}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTracker.BusinessLogic", "..\FitnessTracker.BusinessLogic\FitnessTracker.BusinessLogic.csproj", "{93E32447-F53B-406C-B1C1-07D861D95141}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTracker.Shared", "..\FitnessTracker.Shared\FitnessTracker.Shared.csproj", "{F04E0A18-D88D-4B4E-AF1A-64057975B8BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTracker.BusinessLogic", "..\FitnessTracker.BusinessLogic\FitnessTracker.BusinessLogic.csproj", "{93E32447-F53B-406C-B1C1-07D861D95141}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FitnessTracker.Database", "..\FitnessTracker.Database\FitnessTracker.Database.sqlproj", "{3DF6D453-037C-42ED-806B-FA45CAA5692B}"
 EndProject
@@ -19,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CD5129B8-C9EB-4D2F-A1B1-67AD03764841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD5129B8-C9EB-4D2F-A1B1-67AD03764841}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD5129B8-C9EB-4D2F-A1B1-67AD03764841}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD5129B8-C9EB-4D2F-A1B1-67AD03764841}.Release|Any CPU.Build.0 = Release|Any CPU
 		{239226A1-4449-4833-8B42-1549F8F64610}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{239226A1-4449-4833-8B42-1549F8F64610}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{239226A1-4449-4833-8B42-1549F8F64610}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -31,10 +23,6 @@ Global
 		{93E32447-F53B-406C-B1C1-07D861D95141}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93E32447-F53B-406C-B1C1-07D861D95141}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93E32447-F53B-406C-B1C1-07D861D95141}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F04E0A18-D88D-4B4E-AF1A-64057975B8BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F04E0A18-D88D-4B4E-AF1A-64057975B8BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F04E0A18-D88D-4B4E-AF1A-64057975B8BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F04E0A18-D88D-4B4E-AF1A-64057975B8BB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3DF6D453-037C-42ED-806B-FA45CAA5692B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3DF6D453-037C-42ED-806B-FA45CAA5692B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DF6D453-037C-42ED-806B-FA45CAA5692B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
