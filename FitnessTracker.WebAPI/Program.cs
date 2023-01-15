@@ -1,3 +1,5 @@
+using ElmahCore.Mvc;
+using ElmahCore.Sql;
 using FitnessTracker.BusinessLogic.Data;
 using FitnessTracker.BusinessLogic.Interfaces;
 using FitnessTracker.BusinessLogic.Models;
@@ -35,9 +37,16 @@ builder.Services.AddDbContext<FitnessTrackerContext>(options =>
     options.UseSqlServer(connectionString);
 });
 builder.Services.AddCors(options => options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+builder.Services.AddGraphQLServer().AddQueryType<Query>().AddProjections().AddFiltering().AddSorting();
+builder.Services.AddElmah<SqlErrorLog>(options =>
+{
+    //options.OnPermissionCheck = context => context.User.Identity.IsAuthenticated;
+    options.ConnectionString = connectionString;
+    //options.SqlServerDatabaseSchemaName = "Errors";
+    options.SqlServerDatabaseTableName = "ElmahError";
+});
 // Add local services to the container
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddGraphQLServer().AddQueryType<Query>().AddProjections().AddFiltering().AddSorting();
 
 // Configure the HTTP request pipeline.
 var app = builder.Build();
@@ -55,6 +64,7 @@ if (app.Environment.IsDevelopment())
         options.SpecUrl = "/swagger/v1/swagger.json";
     });
 }
+//app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.UseCors("Open");
@@ -63,4 +73,5 @@ app.UseSwagger(options =>
     //options.SerializeAsV2 = true;
 });
 app.MapGraphQL("/graphql");
+app.UseElmah();
 app.Run();
